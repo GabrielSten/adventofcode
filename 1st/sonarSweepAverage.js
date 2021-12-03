@@ -8,14 +8,10 @@ try {
     console.log('Error:', e.stack);
 }
 
-var counter = 0;
+var counter = 0; //counter for loop below
 for (var i = 0; i < data.length; i++) {
-    //if (i+1 == data.length) {
-    //    break //break if the whole file is read and there is no data[i+1] (why is there not an error for this like in python? "error index out of bounds" or similar..?
-    //}
-    // how is this not needed?
-    var tmp1 = parseInt(data[i]) //str to int
-    var tmp2 = parseInt(data[i+1]) //str to int
+    var tmp1 = (parseInt(data[i]) + parseInt(data[i+1]) + parseInt(data[i+2])); //str to int and added 3 values together
+    var tmp2 = (parseInt(data[i+1]) + parseInt(data[i+2]) + parseInt(data[i+3])); //str to int and added 3 values together
     if (tmp2 > tmp1) {
         var counter = counter + 1
     }
