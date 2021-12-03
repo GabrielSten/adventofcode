@@ -13,7 +13,7 @@ var counter = 0;
 for (var i = 0; i < data.length; i++) {
     //var counter = 0;
     var tmp1 = parseInt(data[i]) //str to int
-    var tmp2 = parseInt(data[i+1])
+    var tmp2 = parseInt(data[i+1]) //str to int
     if (tmp2 > tmp1) {
         var counter = counter + 1
     }
