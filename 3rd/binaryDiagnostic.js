@@ -8,7 +8,7 @@ var epsilon = [];
 try {  
     var data = fs.readFileSync('input.txt', 'utf8'); //read inputfile
     var data = data.split('\n'); //split string of data at "\n" (char for new line)
-console.log('input.txt file read');    
+    console.log('input.txt file read');    
 } 
 
 catch(e) {
@@ -19,7 +19,7 @@ var nrOfRows = data.length
 
 function getColValue(x, n) { //function to get "column value" we need, 1 or 0
     var tmp = 0
-    for (let i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length-1; i++) { //not sure why but the final line is "NaN" and breaks everything so 
         if (colValue != NaN) {
             tmp += parseInt(x[i][n])
         }
@@ -45,6 +45,6 @@ for (let i = 0; i < data[0].length; i++) { //run func on each column to get gamm
     }
 }
 
-gamma = parseInt(gamma, 2);
+gamma = parseInt(gamma, 2);//binary to decimal
 epsilon = parseInt(epsilon, 2);
 console.log('Power consumption:', gamma*epsilon);
