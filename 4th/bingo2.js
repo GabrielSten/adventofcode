@@ -2,10 +2,11 @@ const { count } = require('console');
 let fs = require('fs');
 
 //set this variable to the relevant input index (how many values have been given for the bingo?) 23 seems to be the first bingo
-const INPUTINDEX = 46;
+const INPUTINDEX = 24;
 let bingoData = [];
 let bingoNumbers = [];
 let remainingNumbers = [];
+let boardWinner = [];
 
 
 //read input
@@ -44,41 +45,55 @@ function parseData(data) {
             tmp3.push(parseInt(tmp2.substr(i,2)));
         
         }
-    bingoData.push(tmp3) //push lists into bingoData and remainingNumbers
-    remainingNumbers.push(tmp3)
+    bingoData.push(tmp3) //push lists into bingoData
     }
 }
 
 function checkBoard(board, numbers=bingoNumbers) {
     let counter = 0;
+    let boardremaining = []; //sending back the remaining values to "remainingNumbers variable"
+    let flag = false;
     for (let i = 0; i<5; i++) {
         counter = 0
         for (let j = 0; j<5; j++) {
-            if (numbers.includes(board[j])) {
+            if (numbers.includes(board[j+i*5])) {
                 counter += 1
             }
-        }
-        if (counter == 5) {
-            return true
-        }
+            else {
+                boardremaining.push(board[j+i*5])
+            }
+            if (counter == 5) {
+                flag = true
+            }
+        } 
     }
-    return false
+    remainingNumbers.push(boardremaining)
+    return flag
 }
         
-
 function findWinner(data=bingoData, input=bingoNumbers) {
     for (let i = 0; i < bingoData.length; i++) {
         if (checkBoard(data[i])) {
-            console.log('BINGO! The winning board is : '+i)
+            //console.log('BINGO! The winning board is : '+i)
+            boardWinner.push(i)
         }
     }
+}
+
+function calculate(winner=boardWinner) {
+    let sum = 0
+    if (winner.length > 0) {
+        console.log('BINGO!!! THE WINNER IS BOARD : '+winner)
+        for (let i = 0; i<remainingNumbers[winner].length; i++) {
+            sum += remainingNumbers[winner][i]
+        }
+    }
+    else {
+        console.log('No winner yet...')
+    }
+    return sum*bingoNumbers[bingoNumbers.length-1]
 }
 
 parseData(data)
 findWinner()
-console.log(remainingNumbers.length)
-//for (i = 0; i<bingoData.length; i++) {
-//    if (checkBoard(bingoData[i])) {
-//        console.log('BOARD FOUND AT INDEX : '+i)
-//    }
-//}
+console.log(calculate())
