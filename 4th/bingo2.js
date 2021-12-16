@@ -13,7 +13,6 @@ let boardWinner = [];
 try {  
     data = fs.readFileSync('input.txt', 'utf8'); //read inputfile
     data = data.split('\n'); //split string of data at "\n" (char for new line)
-    //bingoData = bingoData.split
     inputList = data[0].split(','); //get first row and split data at ' '    
     console.log('input.txt file read');  
 } 
@@ -97,3 +96,4 @@ function calculate(winner=boardWinner) {
 parseData(data)
 findWinner()
 console.log(calculate())
+
