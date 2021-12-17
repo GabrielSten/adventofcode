@@ -2,7 +2,7 @@ const { count } = require('console');
 let fs = require('fs');
 
 //set this variable to the relevant input index (how many values have been given for the bingo?) 23 seems to be the first bingo
-const INPUTINDEX = 24;
+const INPUTINDEX = 23;
 let bingoData = [];
 let bingoNumbers = [];
 let remainingNumbers = [];
@@ -66,6 +66,24 @@ function checkBoard(board, numbers=bingoNumbers) {
             }
         } 
     }
+    for (let i = 0; i<5; i++) {
+        counter = 0
+        for (let j = 0; j<25; j+=5) {
+            if (numbers.includes(board[i+j])) {
+                counter += 1
+            }
+            else {
+                if (!boardremaining.includes(board[i+j])) {
+                    boardremaining.push(board[i+j])
+                }
+            }
+            if (counter == 5) {
+                flag = true
+            }
+        }
+    }
+        
+    
     remainingNumbers.push(boardremaining)
     return flag
 }
