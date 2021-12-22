@@ -2,11 +2,12 @@ const { count } = require('console');
 let fs = require('fs');
 
 //set this variable to the relevant input index (how many values have been given for the bingo?) 23 seems to be the first bingo
-const INPUTINDEX = 23;
+const INPUTINDEX = 80;
 let bingoData = [];
 let bingoNumbers = [];
 let remainingNumbers = [];
 let boardWinner = [];
+let looser = []
 
 
 //read input
@@ -94,6 +95,9 @@ function findWinner(data=bingoData, input=bingoNumbers) {
             //console.log('BINGO! The winning board is : '+i)
             boardWinner.push(i)
         }
+        else {
+            looser.push(i)
+        }
     }
 }
 
@@ -112,6 +116,19 @@ function calculate(winner=boardWinner) {
 }
 
 parseData(data)
-findWinner()
-console.log(calculate())
+console.log(findWinner())
+console.log(calculate(98))
+console.log(looser)
 
+
+//const losernumbers = [];
+//function looserFnc() {
+//    for (let i=0; i<25; i++) {
+//        if (!bingoNumbers.includes(bingoData[looser][i])) {
+//            losernumbers.push(bingoData[looser][i])
+//        }
+//    }
+//}
+
+//looserFnc()
+//console.log(losernumbers)

@@ -1,7 +1,7 @@
 var data = [47, 35, 15, 93, 76]
 var inputList = [35, 15]
 remainingNumbers = [];
-let bingoNumbers = [47, 51,  7, 21, 82, 61, 81, 25];
+let bingoNumbers = [78,7,99,41,48];
 let board = [25, 29, 78, 57, 69,
     47 ,51,  7, 21, 82,
     61, 81, 99, 53, 30,
@@ -23,14 +23,28 @@ function checkBoard(board, numbers=bingoNumbers) {
             else {
                 boardremaining.push(board[j+i*5])
             }
-            console.log(counter)
+            if (counter == 5) {
+                flag = true
+            }
+        } 
+    }
+    for (let i = 0; i<5; i++) {
+        counter = 0
+        for (let j = 0; j<25; j+=5) {
+            if (numbers.includes(board[i+j])) {
+                counter += 1
+            }
+            else {
+                if (!boardremaining.includes(board[i+j])) {
+                    boardremaining.push(board[i+j])
+                }
+            }
             if (counter == 5) {
                 flag = true
             }
         }
     }
-    
-    
+        
     
     remainingNumbers.push(boardremaining)
     return flag

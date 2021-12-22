@@ -6,9 +6,9 @@ let board = [];
 
 //read input
 try {  
-    data = fs.readFileSync('input2.txt', 'utf8'); //read inputfile
+    data = fs.readFileSync('input.txt', 'utf8'); //read inputfile
     data = data.split('\n'); //split string of data at "\n" (char for new line)   
-    console.log('input2.txt file read');  
+    console.log('input.txt file read');  
 } 
 
 catch(e) {
@@ -27,13 +27,18 @@ const dataParsed = data.map((i) => {
 function mkBoard() {
     //make array of arrays with zeros
     let row = [] 
-    for (let i = 0; i<10; i++) {
+    for (let i = 0; i<1000; i++) {
         row = []
-        for (let j = 0; j<10; j++) {
+        for (let j = 0; j<1000; j++) {
             row.push(0)
         }
     board.push(row)        
     }
+}
+
+//function to "sidestep" diagonally to the left
+function leftdiag(x) {
+
 }
 
 function plot(data = dataParsed) {
@@ -118,12 +123,7 @@ function counter() {
 mkBoard()
 plot()
 console.log(counter())
-board.forEach((row) => {
-    process.stdout.write(String(row)+'\n')
-})
-console.log(board[1][1])
 //console.log(util.inspect(board, {showHidden: false, depth: null, colors: true}))
-
 
 const myLogger = new Console({
     stdout: fs.createWriteStream("normalStdout.txt"),
