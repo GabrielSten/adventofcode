@@ -1,5 +1,5 @@
-This is the repository for my solutions to codeofadvent/2021
+#This is the repository for my solutions to adventofcode/2021
 
-I will attempt to only use node.js for my solutions
+##I will attempt to only use _node.js_ for my solutions
 
-https://adventofcode.com/2021
+[Advent of Code](https://adventofcode.com/2021)
