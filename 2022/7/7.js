@@ -52,7 +52,7 @@ const fill = (data) => {
 
 fill(data)
 
-console.log(bigObj)
+
 
 // recursive function to give us sizes
 const dirSize = (dir) => {
@@ -73,8 +73,19 @@ const dirSize = (dir) => {
     return size
 }
 
+let totalSize = 0
+
 for (const x in bigObj) {
-    const tmp = bigObj[x]
-    
-    console.log(x, dirSize(x))
+    const tmpSize = dirSize(x)
+    bigObj[x] = [bigObj[x], tmpSize]
+    if (tmpSize<=100000) {
+        totalSize+=tmpSize
+    }
 }
+
+for (const x in bigObj) {
+    console.log(bigObj[x])
+}
+
+// answer 1
+console.log(totalSize)
