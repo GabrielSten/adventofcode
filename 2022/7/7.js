@@ -1,5 +1,5 @@
 const {readFile} = require('../../utils/utils')
-const file = __dirname + '\\test.txt'
+const file = __dirname + '\\input.txt'
 
 const text = readFile(file).split(/\r?\n/)
 const data = []
@@ -55,21 +55,28 @@ fill(data)
 
 
 // recursive function to give us sizes
-const dirSize = (dir) => {
+const dirSize = (dir, depth) => {
     const list = bigObj[dir]
     let stringList = []
     let size = 0
+    // get recursive depth
+    if (typeof depth == 'number') {
+        depth++}
+    else {
+        {depth = 1}
+    }
     // loop
     list.map((x)=>{
         // is this a lowest level directory? if no recurse over lower directory
         if (x[0][0] === 'dir') {
-            size += dirSize(x[0][1])
+            size += dirSize(x[0][1], depth)
         }
         // what files are in the dir? add their size
         if (Number(x[0][0])) {
             size += Number(x[0][0])
         }
     })
+    console.log(`directory: ${dir} | depth: ${depth} | size: ${size}`)
     return size
 }
 
@@ -77,6 +84,7 @@ let totalSize = 0
 
 for (const x in bigObj) {
     const tmpSize = dirSize(x)
+    let recursionCount = 0
     bigObj[x] = [bigObj[x], tmpSize]
     if (tmpSize<=100000) {
         totalSize+=tmpSize
